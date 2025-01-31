@@ -4,7 +4,7 @@ import {IForm} from "../../models/form/IForm.ts";
 import {loginValidator} from "../../validator/LogitValidator.ts";
 import {loginUser} from "../../api/auth/loginUser.ts";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
-import {userSlice} from "../../redux/slices/user-slice/UserSlice.ts";
+import {userAuthSliceSliceActions} from "../../redux/slices/userAuth-slice/UserAuthSlice.ts";
 
 interface LoginFormProps {
     setActive: (value: (((prevState: boolean) => boolean) | boolean)) => void
@@ -19,9 +19,9 @@ export const LoginForm = ({setActive}: LoginFormProps) => {
 
     const submitAndLogin = async (formData: IForm) => {
         const data = await loginUser(formData).then(res => res.data);
-        localStorage.setItem('user',JSON.stringify(data));
-        dispatch(userSlice.actions.setUserImage(data.image))
-        dispatch(userSlice.actions.setUserAuth(true))
+        dispatch(userAuthSliceSliceActions.setUserImage(data.image))
+        dispatch(userAuthSliceSliceActions.setUserAuth(true))
+        dispatch(userAuthSliceSliceActions.setLoginUser(data))
         setActive(false);
         reset()
     }
