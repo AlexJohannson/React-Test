@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import {Menu} from "./components/menu/Menu.tsx";
 import {RouterComponent} from "./roures/RouterComponent.tsx";
 
@@ -6,10 +6,12 @@ function App() {
 
     return (
         <>
-            <Menu/>
-            <RouterComponent/>
+            <div className={'wrapper'}>
+                 <Menu/>
+                 <RouterComponent/>
+            </div>
         </>
     )
 }
 
-export default App
+export default App;

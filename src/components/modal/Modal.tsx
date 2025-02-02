@@ -1,17 +1,20 @@
-import {ReactNode} from "react";
 import './Madal.css';
+import {ReactNode} from "react";
+import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
+import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
+import {modalSliceActions} from "../../redux/slices/modal-slice/ModalSlice.ts";
 
 interface ModalProps {
-    active: boolean,
-    setActive: (value: (((prevState: boolean) => boolean) | boolean)) => void,
     children:ReactNode
 }
 
-export const Modal = ({active, setActive,children}: ModalProps) => {
+export const Modal = ({children}: ModalProps) => {
+    const {isActive} = useAppSelector(({modalSlice})=>modalSlice);
+    const dispatch = useAppDispatch();
     return (
-        <div className={active ? 'modal active' : 'modal'}>
-            <div className={'modal__wrapper'} onClick={() => setActive(false)}>
-                <div className={'modal__content'}onClick={(e) => e.stopPropagation()}>
+        <div className={isActive ? 'modal active' : 'modal'}>
+            <div className={'modal__wrapper'} onClick={() => dispatch(modalSliceActions.setIsActive(false))}>
+                <div className={'modal__content'} onClick={(e) => e.stopPropagation()}>
                     {children}
                 </div>
             </div>

@@ -1,0 +1,48 @@
+.login-to-app {
+    width: 300px;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.login-form {
+    width: 300px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.error-message-text {
+    color: red;
+}
+.label-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+input {
+    width: 220px;
+    height: 25px;
+    border: none;
+    background: lightblue;
+}
+.button-sing-in {
+    width: 120px;
+    height: 30px;
+    border: none;
+    background: lightgray;
+    color: red;
+    transition: 0.9s;
+    cursor: pointer;
+}
+.button-sing-in:hover {
+    transform: scale(1.1);
+}

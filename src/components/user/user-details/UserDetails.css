@@ -1,0 +1,12 @@
+.user-details-container {
+    width: 100%;
+    height: 462px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: lightgoldenrodyellow;
+}
+.no-recipes {
+    color: red;
+}

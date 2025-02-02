@@ -1,70 +1,62 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Modal} from "../modal/Modal.tsx";
-import {useState} from "react";
 import {useAppSelector} from "../../redux/hooks/useAppSelector.tsx";
 import {useAppDispatch} from "../../redux/hooks/useAppDispatch.tsx";
 import {userAuthSliceSliceActions} from "../../redux/slices/userAuth-slice/UserAuthSlice.ts";
-import {AppRoutes} from "../../roures/routes.tsx";
+import {modalSliceActions} from "../../redux/slices/modal-slice/ModalSlice.ts";
+import {AppRoutes} from "../../roures/routes.ts";
 import {LoginForm} from "../login-form/LoginForm.tsx";
+import './Menu.css';
 
 export const Menu = () => {
-    // Винести це в редакс
-    const [active, setActive] = useState<boolean>(false)
+    const {userImage, isUserAuth} = useAppSelector(({userAuthSlice}) => userAuthSlice);
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const openModal = () => {
-        setActive(true)
+        dispatch(modalSliceActions.setIsActive(true));
     }
 
-    const {userImage, isUserAuth} = useAppSelector(({userAuthSlice}) => userAuthSlice)
-    const dispatch = useAppDispatch()
-
     const logoutUser = () => {
-        dispatch(userAuthSliceSliceActions.setLogoutUser())
-        dispatch(userAuthSliceSliceActions.setUserAuth(false))
-        dispatch(userAuthSliceSliceActions.setUserImage(''))
+        dispatch(userAuthSliceSliceActions.setLogoutUser());
+        navigate(AppRoutes.root);
     }
 
     if (isUserAuth && userImage) {
         return (
-            <div className={'w-full bg-gray-50 bg-opacity-30 relative'}>
-                <div className={'w-5/6 h-20 flex justify-end items-center '}>
-                    <ul className={'flex w-96 gap-6 justify-end items-center'}>
-                        <Link to={AppRoutes.root}>
-                            <li className={'hover:text-white hover:underline underline-offset-2'}>Home</li>
+            <>
+                <div className={'navigator-menu'}>
+                    <ul>
+                        <Link to={AppRoutes.root} className={'link-menu'}>
+                            <li>HOME</li>
                         </Link>
-                        <Link to={AppRoutes.users}>
-                            <li className={'hover:text-white hover:underline underline-offset-2'}>Users</li>
+                        <Link to={AppRoutes.users} className={'link-menu'}>
+                            <li>USERS</li>
                         </Link>
-                        <Link to={AppRoutes.recipes}>
-                            <li className={'hover:text-white hover:underline underline-offset-2'}>Recipes</li>
+                        <Link to={AppRoutes.recipes} className={'link-menu'}>
+                            <li>RECIPES</li>
                         </Link>
-                        <button className={'hover:text-white hover:underline underline-offset-2'}
-                                onClick={logoutUser}>Logout
-                        </button>
-                        <img src={userImage} alt="image" className={'size-14'}/>
+                        <button onClick={logoutUser}>LOGOUT</button>
                     </ul>
                 </div>
-                <Modal active={active} setActive={setActive}>
-                    <LoginForm setActive={setActive}/>
+                <div className={'user-image'}>
+                    <img src={userImage} alt="image"/>
+                </div>
+                <Modal>
+                    <LoginForm/>
                 </Modal>
-            </div>
+            </>
         )
     } else {
         return (
-            <div className={'w-full bg-gray-50 bg-opacity-30 relative'}>
-                <div className={'w-5/6 h-20 flex justify-end items-center '}>
-                    <ul className={'flex w-96 gap-6 justify-end items-center'}>
-                        <Link to={AppRoutes.root}>
-                            <li className={'hover:text-white hover:underline underline-offset-2'}>Home</li>
-                        </Link>
-                        <button className={'hover:text-white hover:underline underline-offset-2'}
-                                onClick={openModal}>Login
-                        </button>
-                    </ul>
+            <>
+                <div className={'login-button'}>
+                    <button className={'login-tap-button'} onClick={openModal}>LOGIN</button>
                 </div>
-                <Modal active={active} setActive={setActive}>
-                    <LoginForm setActive={setActive}/>
+                <Modal>
+                    <LoginForm/>
                 </Modal>
-            </div>
+            </>
         );
     }
-}
+};
