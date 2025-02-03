@@ -1,9 +1,9 @@
-import {userSlice} from "../slices/user-slice/UserSlice.ts";
-import {recipeSlice} from "../slices/recipe-slice/RecipeSlice.ts";
+import {userSlice} from "../slices/UserSlice.ts";
+import {recipeSlice} from "../slices/RecipeSlice.ts";
 import {configureStore} from "@reduxjs/toolkit";
-import {userAuthSlice} from "../slices/userAuth-slice/UserAuthSlice.ts";
-import {modalSlice} from "../slices/modal-slice/ModalSlice.ts";
-import {errorSlice} from "../slices/error-slice/ErrorSlice.ts";
+import {userAuthSlice} from "../slices/UserAuthSlice.ts";
+import {modalSlice} from "../slices/ModalSlice.ts";
+import {searchSlice} from "../slices/SearchSlice.ts";
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +11,6 @@ export const store = configureStore({
         recipeSlice: recipeSlice.reducer,
         userAuthSlice: userAuthSlice.reducer,
         modalSlice:modalSlice.reducer,
-        errorSlice:errorSlice.reducer,
+        searchSlice:searchSlice.reducer,
     }
 });

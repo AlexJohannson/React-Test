@@ -1,5 +1,5 @@
 import './App.css';
-import {Menu} from "./components/menu/Menu.tsx";
+import {MenuComponent} from "./components/menu-component/MenuComponent.tsx";
 import {RouterComponent} from "./roures/RouterComponent.tsx";
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
     return (
         <>
             <div className={'wrapper'}>
-                 <Menu/>
+                 <MenuComponent/>
                  <RouterComponent/>
             </div>
         </>
