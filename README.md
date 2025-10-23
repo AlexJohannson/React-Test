@@ -12,3 +12,5 @@ The page with more detailed information contains detailed information about the 
 When the user click on the recipes link a page with users recipes opens. The recipes page contains a photo of user who was logged in to the app, input for searching recipes by tag or ID and a list of recipes consisting of the recipe name and tags below it. The recipe list is paginated and user can get five recipes in the list of recipes. To move between the list of recipes user can use the buttons PREVIOUS and NEXT at the bottom of the list. When clicking on the recipe name user is taken to a page with more detailed information about this recipe. When user click on a tags, recipes with the same tags are filtered.
 
 In the input user can enter the name or ID of the recipe. After the data is entered into the input recipes will appear on request.When clicking on the recipe name that appears after entering information in the input, user will automatically be taken to the recipe page with more detailed information.
+
+Try it = { username: 'emilys', password: 'emilyspass' };
